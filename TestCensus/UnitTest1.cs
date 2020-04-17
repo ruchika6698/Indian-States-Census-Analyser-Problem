@@ -44,5 +44,15 @@ namespace CensusAnalyser
             StateCensusAnalyzer stateCensus = new StateCensusAnalyzer(actualpath);
             Assert.AreEqual("Delimiter Incorrect", stateCensus.numberOfRecords());
         }
+        /// <summary>
+        ///TC-1.4:csv file Correct but delimiter Incorrect
+        /// </summary>
+        [Test]
+        public void stateCensus_HeaderIncorrect()
+        {
+            string actualpath = @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCensusData.csv";
+            StateCensusAnalyzer stateCensus = new StateCensusAnalyzer(actualpath);
+            Assert.AreEqual("Header Incorrect", stateCensus.numberOfRecords());
+        }
     }
 }

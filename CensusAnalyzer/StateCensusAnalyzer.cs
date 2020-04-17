@@ -14,7 +14,7 @@ namespace CensusAnalyser
         {
             this.filepath = filepath;
         }
-        public StateCensusAnalyzer(string filepath,char delimiter)
+        public StateCensusAnalyzer(string filepath, char delimiter)
         {
             this.filepath = filepath;
             this.delimiter = delimiter;
@@ -31,9 +31,9 @@ namespace CensusAnalyser
             string[] a = File.ReadAllLines(filepath);
             return a.Length;
         }
-            /// <summary>
-            ///Method to find Number of records in file
-            /// </summary>
+        /// <summary>
+        ///Method to find Number of records in file
+        /// </summary>   
         public object numberOfRecords()
         {
             try
@@ -47,6 +47,10 @@ namespace CensusAnalyser
                     throw new CustomException("File not found", CustomException.Exception.File_not_found);
                 }
                 string[] data = File.ReadAllLines(filepath);
+                if (data[0] != "State,Population,AreaInSqKm,DensityPerSqKm")
+                {
+                    throw new CustomException("Header Incorrect", CustomException.Exception.Header_Incorrect);
+                }
                 foreach (var element in data)
                 {
                     if (!element.Contains(delimiter))
@@ -54,7 +58,7 @@ namespace CensusAnalyser
                         throw new CustomException("Delimiter Incorrect", CustomException.Exception.Delimiter_Incorrect);
                     }
                 }
-                return data.Length ;
+                return data.Length - 1;
             }
             catch(CustomException e)
             {
