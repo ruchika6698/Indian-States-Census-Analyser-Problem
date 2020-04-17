@@ -23,9 +23,9 @@ namespace CensusAnalyser
                 }
                 return count - 1;
             }
-            catch(CustomException)
+            catch (CustomException)
             {
-                throw new CustomException("File_not_found");
+                throw new CustomException("File not found");
             }
         }
     }

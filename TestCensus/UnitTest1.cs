@@ -21,7 +21,8 @@ namespace CensusAnalyser
         public void stateCensus_ifFileincorrect()
         {
             string actualpath = @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCensusData.csv";
-            Assert.AreEqual("File_not_found", StateCensusAnalyzer.numberOfRecords(actualpath));
+            StateCensusAnalyzer stateCensus = new StateCensusAnalyzer(actualpath);
+            Assert.AreEqual("File not found", stateCensus.numberOfRecords());
         }
         /// <summary>
         ///TC-1.3:If file incorrect then throw custom exception
@@ -30,7 +31,18 @@ namespace CensusAnalyser
         public void stateCensus_TypeincorrectException()
         {
             string actualpath = @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCensusData.txt";
-            Assert.AreEqual("File_format_Incorrect", StateCensusAnalyzer.numberOfRecords(actualpath));
+            StateCensusAnalyzer stateCensus = new StateCensusAnalyzer(actualpath);
+            Assert.AreEqual("File format Incorrect", stateCensus.numberOfRecords());
+        }
+        /// <summary>
+        ///TC-1.4:csv file Correct but delimiter Incorrect
+        /// </summary>
+        [Test]
+        public void stateCensus_DelimiterincorrectException()
+        {
+            string actualpath = @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCensusData.csv";
+            StateCensusAnalyzer stateCensus = new StateCensusAnalyzer(actualpath);
+            Assert.AreEqual("Delimiter Incorrect", stateCensus.numberOfRecords());
         }
     }
 }
