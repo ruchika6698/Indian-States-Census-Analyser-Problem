@@ -12,16 +12,25 @@ namespace CensusAnalyser
         [Test]
         public void stateCensus_forCheckingnumberOfRecords()
         {
-            Assert.AreEqual(29, StateCensusAnalyzer.numberOfRecords(filepath));
+            Assert.AreEqual(30, StateCensusAnalyzer.records(filepath));
         }
         /// <summary>
         ///TC-1.2:If file incorrect then throw custom exception
-        /// </summary
+        /// </summary>
         [Test]
         public void stateCensus_ifFileincorrect()
         {
-            string actualpath = @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCensusData.cs";
-            Assert.AreEqual("File not found", StateCensusAnalyzer.numberOfRecords(actualpath));
+            string actualpath = @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCensusData.csv";
+            Assert.AreEqual("File_not_found", StateCensusAnalyzer.numberOfRecords(actualpath));
+        }
+        /// <summary>
+        ///TC-1.3:If file incorrect then throw custom exception
+        /// </summary>
+        [Test]
+        public void stateCensus_TypeincorrectException()
+        {
+            string actualpath = @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCensusData.txt";
+            Assert.AreEqual("File_format_Incorrect", StateCensusAnalyzer.numberOfRecords(actualpath));
         }
     }
 }
