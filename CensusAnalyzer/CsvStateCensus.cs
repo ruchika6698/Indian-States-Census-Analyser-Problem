@@ -25,7 +25,7 @@ namespace CensusAnalyser
             }
             catch (CustomException)
             {
-                throw new CustomException("Delimiter Incorrect");
+                throw new CustomException("File not found");
             }
         }
     }

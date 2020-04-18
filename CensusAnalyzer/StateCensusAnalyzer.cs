@@ -31,9 +31,9 @@ namespace CensusAnalyser
             string[] a = File.ReadAllLines(filepath);
             return a.Length;
         }
-        /// <summary>
-        ///Method to find Number of records in file
-        /// </summary>   
+            /// <summary>
+            ///Method to find Number of records in file
+            /// </summary>
         public object numberOfRecords()
         {
             try

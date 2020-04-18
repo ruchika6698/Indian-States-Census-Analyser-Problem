@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Runtime.Serialization;
-
+using System.Collections.Generic;
+using System.Text;
 namespace CensusAnalyser
 {
     public class CustomException : Exception
@@ -14,6 +14,8 @@ namespace CensusAnalyser
             Header_Incorrect
         }
         public string message;
+        public double GetMessage;
+
         public CustomException(string message, Exception type)
         {
             this.message = message;
@@ -23,7 +25,6 @@ namespace CensusAnalyser
         public CustomException(string message) : base(message)
         {
         }
-
         public override string Message
         {
             get
