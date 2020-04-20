@@ -15,7 +15,6 @@ namespace CensusAnalyser
         {
             this.filepath = filepath;
         }
-   
         /// <summary>
         /// Main Method
         /// </summary>
@@ -23,6 +22,7 @@ namespace CensusAnalyser
         {
             Console.WriteLine("Welcome to India state census Analyzer");
         }
+
         /// <summary>
         ///Method to find Number of records in file
         /// </summary>
