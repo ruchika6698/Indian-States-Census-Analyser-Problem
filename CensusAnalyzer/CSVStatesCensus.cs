@@ -6,6 +6,9 @@ using System.Text;
 
 namespace CensusAnalyzer
 {
+    /// <summary>
+    ///Method to find Number of records in file for StateCode csv file
+    /// </summary>
     public class CSVStatesCensus
     {
         public static int getDataFromCSVFile(string statecode, char delimiter = ',', string header = "SrNo,State,TIN,StateCode")

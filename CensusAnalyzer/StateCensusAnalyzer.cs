@@ -24,7 +24,7 @@ namespace CensusAnalyser
         }
 
         /// <summary>
-        ///Method to find Number of records in file
+        ///Method to find Number of records in file for state census data
         /// </summary>
         public static int numberOfRecords(string filepath, char delimiter = ',', string header = "State,Population,AreaInSqKm,DensityPerSqKm")
         {
