@@ -1,58 +1,106 @@
 using NUnit.Framework;
 using CensusAnalyser;
+using System;
+using CensusAnalyzer;
 
 namespace CensusAnalyser
 {
     public class Tests
     {
         public string filepath = @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCensusData.csv";
+        public string statecode = @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCode.csv";
+
         /// <summary>
         ///TC-1.1: Test for checking number of Records
         /// </summary>
         [Test]
-        public void stateCensus_forCheckingnumberOfRecords()
+        public void GiventheStatesCensusCSVfile_WhenAnalyse_ShouldRecordNumberOfRecordmatches()
         {
-            Assert.AreEqual(30, StateCensusAnalyzer.records(filepath));
+            int actual = StateCensusAnalyzer.numberOfRecords(filepath);
+            Assert.AreEqual(30, actual);
         }
         /// <summary>
         ///TC-1.2:If file incorrect then throw custom exception
         /// </summary>
         [Test]
-        public void stateCensus_ifFileincorrect()
+        public void GivenIncorrectfile_WhenAnalyse_ShouldThrowCensusuAnalyserException()
         {
-            string actualpath = @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCensusData.csv";
-            StateCensusAnalyzer stateCensus = new StateCensusAnalyzer(actualpath);
-            Assert.AreEqual("File not found", stateCensus.numberOfRecords());
+            var actual= Assert.Throws<CustomException>(() => StateCensusAnalyzer.numberOfRecords(@"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCensus.csv"));
+            Assert.AreEqual("file path incorrect", actual.GetMessage);
         }
         /// <summary>
         ///TC-1.3:If file incorrect then throw custom exception
         /// </summary>
         [Test]
-        public void stateCensus_TypeincorrectException()
+        public void GivenIncorrectfileType_WhenAnalyse_ShouldThrowCensusuAnalyserException()
         {
-            string actualpath = @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCensusData.txt";
-            StateCensusAnalyzer stateCensus = new StateCensusAnalyzer(actualpath);
-            Assert.AreEqual("File format Incorrect", stateCensus.numberOfRecords());
+            var incorrectpath = Assert.Throws<CustomException>(() => StateCensusAnalyzer.numberOfRecords(@"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCensusData.txt"));
+            Assert.AreEqual("File type incorrect", incorrectpath.GetMessage);
         }
         /// <summary>
         ///TC-1.4:csv file Correct but delimiter Incorrect
         /// </summary>
         [Test]
-        public void stateCensus_DelimiterincorrectException()
+        public void GivenIncorrectDelimiter_WhenAnalyse_ShouldThrowCensusAnalyserException()
         {
-            string actualpath = @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCensusData.csv";
-            StateCensusAnalyzer stateCensus = new StateCensusAnalyzer(actualpath);
-            Assert.AreEqual("Delimiter Incorrect", stateCensus.numberOfRecords());
+            var incorrectDelimiter = Assert.Throws<CustomException>(() => StateCensusAnalyzer.numberOfRecords(filepath, '.'));
+            Assert.AreEqual("Incorrect Delimiter", incorrectDelimiter.GetMessage);
         }
         /// <summary>
-        ///TC-1.5:csv file Correct but delimiter Incorrect
+        ///TC-1.5:csv file Correct but header Incorrect
         /// </summary>
         [Test]
-        public void stateCensus_HeaderIncorrect()
+        public void GivenIncorrectHeader_WhenAnalyse_ShouldThrowCensusAnalyserException()
         {
-            string actualpath = @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCensusData.csv";
-            StateCensusAnalyzer stateCensus = new StateCensusAnalyzer(actualpath);
-            Assert.AreEqual("Header Incorrect", stateCensus.numberOfRecords());
+            var incorrectHeader = Assert.Throws<CustomException>(() => StateCensusAnalyzer.numberOfRecords(filepath, ',', "Ste,Population,AreaInSqKm,DensityPerSqKm"));
+            Assert.AreEqual("Incorrect header", incorrectHeader.GetMessage);
         }
+
+        /// <summary>
+        ///TC-2.1: Test for checking number of Records in statecode csv
+        /// </summary>
+        [Test]
+        public void GivenCSVStateCodeFile_WhenAnalyse_ReturnNumberOfRecordsMatch()
+        {
+            int actual = CSVStatesCensus.getDataFromCSVFile(statecode);
+            Assert.AreEqual(38,actual);
+        }
+        /// <summary>
+        ///TC-2.2:If file incorrect then throw custom exception for statecode csv
+        /// </summary>
+        [Test]
+        public void GivenIncorrectfile_WhenAnalyse_ShouldThrowExceptionforstatecodeCSV()
+        {
+            var actual = Assert.Throws<CustomException>(() => CSVStatesCensus.getDataFromCSVFile(@"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\State.csv"));
+            Assert.AreEqual("file path incorrect", actual.GetMessage);
+        }
+        /// <summary>
+        ///TC-2.3:If file incorrect then throw custom exception for statecode csv
+        /// </summary>
+        [Test]
+        public void GivenIncorrectfileType_WhenAnalyse_ShouldThrowExceptionforstatecodeCSV()
+        {
+            var incorrectpath = Assert.Throws<CustomException>(() => CSVStatesCensus.getDataFromCSVFile(@"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCode.txt"));
+            Assert.AreEqual("File type incorrect", incorrectpath.GetMessage);
+        }
+        /// <summary>
+        ///TC-1.4:csv file Correct but delimiter Incorrect
+        /// </summary>
+        [Test]
+        public void GivenIncorrectDelimiter_WhenAnalyse_ShouldThrowExceptionforstatecodeCSV()
+        {
+            var incorrectDelimiter = Assert.Throws<CustomException>(() => CSVStatesCensus.getDataFromCSVFile(filepath, '.'));
+            Assert.AreEqual("Incorrect Delimiter", incorrectDelimiter.GetMessage);
+        }
+        /// <summary>
+        ///TC-1.5:csv file Correct but header Incorrect
+        /// </summary>
+        [Test]
+        public void GivenIncorrectHeader_WhenAnalyse_ShouldThrowExceptionforstatecodeCSV()
+        {
+            var incorrectHeader = Assert.Throws<CustomException>(() => CSVStatesCensus.getDataFromCSVFile(filepath, ',', "SrN,State,TIN,StateCode"));
+            Assert.AreEqual("Incorrect header", incorrectHeader.GetMessage);
+        }
+
     }
 }
