@@ -49,10 +49,6 @@ namespace CensusAnalyzer
             {
                 throw new CustomException("file path incorrect");
             }
-            catch (CustomException)
-            {
-                throw;
-            }
         }
     }
 }
