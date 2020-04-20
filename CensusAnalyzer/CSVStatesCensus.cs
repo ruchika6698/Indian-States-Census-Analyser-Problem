@@ -8,16 +8,21 @@ namespace CensusAnalyzer
 {
     public class CSVStatesCensus
     {
-        public static int getDataFromCSVFile(string statecode)
+        public static object getDataFromCSVFile(string statecode)
         {
-            int count = 0;
-            string[] data = File.ReadAllLines(statecode);
-            IEnumerable<string> ele = data;
-            foreach (var elements in data)
+            try
             {
-                count++;
+                if (statecode != @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCode.csv")
+                {
+                    throw new CustomException("file path incorrect");
+                }
+                string[] data = File.ReadAllLines(statecode);
+                return data.Length;
             }
-            return count;
+            catch (CustomException)
+            {
+                throw;
+            }
         }
     }
 
