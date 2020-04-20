@@ -12,9 +12,13 @@ namespace CensusAnalyzer
         {
             try
             {
-                if (statecode != @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCode.csv")
+                if (Path.GetExtension(statecode) != ".csv")
                 {
-                    throw new CustomException("file path incorrect");
+                    throw new CustomException("File_format_Incorrect");
+                }
+                if (statecode != @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCensus.csv")
+                {
+                    throw new CustomException("File_not_found");
                 }
                 string[] data = File.ReadAllLines(statecode);
                 return data.Length;
