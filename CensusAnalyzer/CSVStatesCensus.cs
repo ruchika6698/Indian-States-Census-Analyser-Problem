@@ -16,7 +16,7 @@ namespace CensusAnalyzer
         /// <summary>
         /// Constructor
         /// </summary>
-        
+        public delegate int GetCountFromCSVStates(string path, char delimiter = ',', string header = "SrNo,State,TIN,StateCode");
         public static int getDataFromCSVFile(string statecode, char delimiter = ',', string header = "SrNo,State,TIN,StateCode")
         {
             try
