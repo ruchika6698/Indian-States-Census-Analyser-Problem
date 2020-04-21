@@ -1,9 +1,10 @@
 using NUnit.Framework;
-using CensusAnalyser;
 using System;
 using CensusAnalyzer;
+using static CensusAnalyzer.StateCensusAnalyzer;
+using static CensusAnalyzer.CSVStatesCensus;
 
-namespace CensusAnalyser
+namespace CensusAnalyzer
 {
     public class Tests
     {
@@ -55,12 +56,12 @@ namespace CensusAnalyser
             var incorrectHeader = Assert.Throws<CustomException>(() => StateCensusAnalyzer.numberOfRecords(filepath, ',', "Ste,Population,AreaInSqKm,DensityPerSqKm"));
             Assert.AreEqual("Incorrect header", incorrectHeader.GetMessage);
         }
-
+        
         /// <summary>
         ///TC-2.1: Test for checking number of Records in statecode csv
         /// </summary>
         [Test]
-        public void GivenCSVStateCodeFile_WhenAnalyse_ReturnNumberOfRecordsMatch()
+        public void GivenCSVStateCodeFile_WhenAnalyse_ShouldRecordNumberOfRecordmatcheStateCode()
         {
             int actual = CSVStatesCensus.getDataFromCSVFile(statecode);
             Assert.AreEqual(38,actual);
@@ -84,7 +85,7 @@ namespace CensusAnalyser
             Assert.AreEqual("File type incorrect", incorrectpath.GetMessage);
         }
         /// <summary>
-        ///TC-1.4:csv file Correct but delimiter Incorrect
+        ///TC-2.4:csv file Correct but delimiter Incorrect
         /// </summary>
         [Test]
         public void GivenIncorrectDelimiter_WhenAnalyse_ShouldThrowExceptionforstatecodeCSV()
@@ -93,7 +94,7 @@ namespace CensusAnalyser
             Assert.AreEqual("Incorrect Delimiter", incorrectDelimiter.GetMessage);
         }
         /// <summary>
-        ///TC-1.5:csv file Correct but header Incorrect
+        ///TC-2.5:csv file Correct but header Incorrect
         /// </summary>
         [Test]
         public void GivenIncorrectHeader_WhenAnalyse_ShouldThrowExceptionforstatecodeCSV()

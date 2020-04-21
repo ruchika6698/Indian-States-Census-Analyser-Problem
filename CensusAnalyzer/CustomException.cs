@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace CensusAnalyser
+namespace CensusAnalyzer
 {
     public class CustomException : Exception
     {
