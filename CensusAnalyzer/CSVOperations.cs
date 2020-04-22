@@ -17,8 +17,7 @@ namespace CensusAnalyzer
         public static int CountRecords(string[] records)
         {
             int count = 0;
-            IEnumerable<string> enumerator = records;
-            foreach (string str in enumerator)
+            foreach (string str in records)
             {
                 count++;
             }
@@ -38,11 +37,6 @@ namespace CensusAnalyzer
             {
                 throw new CustomException("file path incorrect");
             }
-        }
-
-        internal static int records()
-        {
-            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -81,7 +75,6 @@ namespace CensusAnalyzer
             }
             catch (CustomException)
             {
-
                 throw;
             }
         }

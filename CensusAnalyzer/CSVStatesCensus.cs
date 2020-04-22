@@ -9,23 +9,28 @@ namespace CensusAnalyzer
     /// <summary>
     ///Method to find Number of records in file for StateCode csv file
     /// </summary>
-    public class CSVStatesCensus : CSVBuilder
+    public class CSVStatesCensus : ICSVBuilder
     {
-       public string statecode;
+        public string statecode;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public delegate int GetCountFromCSVStates(string path, char delimiter = ',', string header = "SrNo,State,TIN,StateCode");
-        public static int getDataFromCSVFile(string statecode, char delimiter = ',', string header = "SrNo,State,TIN,StateCode")
+        public delegate int GetCountFromCSVStates();
+
+        CSVBuilder csvBuilder = new CSVBuilder();
+
+        public static GetCountFromCSVStates getDataFromCSVFile { get; internal set; }
+
+        public int ToGetDataFromCSVFile()
         {
             try
             {
-                bool type = CSVOperations.CheckFileType(statecode, ".csv");
-                string[] records = CSVOperations.ReadCSVFile(statecode);
-                bool delimit = CSVOperations.CheckForDelimiter(records, delimiter);
-                bool head = CSVOperations.CheckForHeader(records, header);
-                int count = CSVOperations.CountRecords(records);
+                string pa = csvBuilder.Path;
+                char del = csvBuilder.Delimeter;
+                string header = csvBuilder.Header;
+
+                int count = CSVOperations.CountRecords(csvBuilder.Records);
                 return count;
             }
             catch (Exception)
@@ -34,12 +39,12 @@ namespace CensusAnalyzer
             }
         }
 
-        int CSVBuilder.numberOfRecords(string filepath, char delimiter, string header)
+        int ICSVBuilder.numberOfRecords()
         {
             throw new NotImplementedException();
         }
 
-        int CSVBuilder.getDataFromCSVFile(string statecode, char delimiter, string header)
+        int ICSVBuilder.getDataFromCSVFile()
         {
             throw new NotImplementedException();
         }
