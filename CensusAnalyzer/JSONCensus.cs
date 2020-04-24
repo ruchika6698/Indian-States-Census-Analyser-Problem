@@ -12,6 +12,9 @@ namespace CensusAnalyser
 {
     public class JSONCensus
     {
+        /// <summary>
+        ///Method for sort First value from json file
+        /// </summary>
         public static string SortCSVFileWriteInJsonAndReturnFirstData(string filePath, string jsonFilepath, string key)
         {
             string re = File.ReadAllText(filePath);
@@ -30,6 +33,9 @@ namespace CensusAnalyser
 
             return CSVOperations.RetriveFirstDataOnKey(jsonFilepath, key);
         }
+        /// <summary>
+        ///Method for sort last value from json file
+        /// </summary>
         public static string SortCSVFileWriteInJsonAndReturnLastData(string filePath, string jsonFilepath, string key)
         {
             string re = File.ReadAllText(filePath);
