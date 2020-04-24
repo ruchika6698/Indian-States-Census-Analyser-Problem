@@ -42,6 +42,31 @@ namespace CensusAnalyzer
             }
             return map.Count;
         }
+        public static int Records(string[] records)
+        {
+            int k = 1;
+            Dictionary<int, Dictionary<string, string>> map = new Dictionary<int, Dictionary<string, string>>();
+            string[] key = records[0].Split(',');
+            for (int i = 1; i < records.Length; i++)
+            {
+                string[] value = records[i].Split(',');
+                Dictionary<string, string> subMap = new Dictionary<string, string>()
+                {
+                  { key[0], value[0] },
+                  { key[1], value[1] },
+                  { key[2], value[2] },
+                  { key[3], value[3] },
+                  { key[4], value[4] },
+                  { key[5], value[5] },
+                  { key[6], value[6] },
+                  { key[7], value[7] },
+                  { key[8], value[8] },
+                };
+                map.Add(k, subMap);
+                k++;
+            }
+            return map.Count;
+        }
         /// <summary>
         ///Method to find file path is correct or incorrect
         /// </summary>
@@ -191,7 +216,7 @@ namespace CensusAnalyzer
             {
                 for (int j = 0; j < stateCensusrrary.Count - i - 1; j++)
                 {
-                    if ((int)stateCensusrrary[j][key] < (int)stateCensusrrary[j + 1][key])
+                    if ((int)stateCensusrrary[j][key] > (int)stateCensusrrary[j + 1][key])
                     {
                         var temp = stateCensusrrary[j + 1];
                         stateCensusrrary[j + 1] = stateCensusrrary[j];

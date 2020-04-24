@@ -18,6 +18,7 @@ namespace CensusAnalyzer
         public string uscensus = @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\USCensusData.csv";
         public string jsonPathstateCensus = @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCensusData.JSON";
         public string jsonPathstatecode = @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCode.JSON";
+        public string jsonPathUSCensus = @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\USCensusData.JSON";
 
         /// <summary>
         ///TC-1.1: Test for checking number of Records
@@ -148,14 +149,25 @@ namespace CensusAnalyzer
         public void GivenCSVAndJsonPathToAddIntoJSon_AfterSortingOnDensity_WhenAnalyse_ReturnlastState()
         {
             string lastValue = JSONCensus.SortCSVFileOnNumbersAndWriteInJsonAndReturnData(filepath, jsonPathstateCensus, "DensityPerSqKm");
-            Assert.AreEqual("52", lastValue);
+            Assert.AreEqual("1102", lastValue);
         }
-
+        /// <summary>
+        /// UC-7 :Givens the state of the CSV and json path to add into json after sorted based on population and density
+        /// </summary> 
         [Test]
         public void GivenCSVAndJsonPathToAddIntoJSon_AfterSortingOnArea_WhenAnalyse_ReturnlastState()
         {
             string lastValue = JSONCensus.SortCSVFileOnNumbersAndWriteInJsonAndReturnData(filepath, jsonPathstateCensus, "AreaInSqKm");
-            Assert.AreEqual("3702", lastValue);
+            Assert.AreEqual("342239", lastValue);
+        }
+        /// <summary>
+        /// UC-9 :Givens the state of the CSV and json path to add into json after sorted based on population using UScensus
+        /// </summary> 
+        [Test]
+        public void GivenCSVAndJsonPathToAddIntoJSon_AfterSortingOnPopulation_WhenAnalyse_ReturnMostPopulationState()
+        {
+            int count = JSONCensus.SortCSVFileWriteInJsonAndReturnNumberOfStatesSorted(uscensus, jsonPathUSCensus, "Population");
+            Assert.NotZero(count);
         }
     }
 }
