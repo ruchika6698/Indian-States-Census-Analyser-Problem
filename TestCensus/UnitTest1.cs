@@ -141,14 +141,20 @@ namespace CensusAnalyzer
             Assert.NotZero(count);
         }
         /// <summary>
-        /// UC-6 :Givens the state of the CSV and json path to add into json after sorting on density when analyse returnlast.
+        /// UC-6 :Givens the state of the CSV and json path to add into json after sorted based on population and density
         /// </summary> 
         [Test]
         public void GivenCSVAndJsonPathToAddIntoJSon_AfterSortingOnDensity_WhenAnalyse_ReturnlastState()
         {
-            string lastValue = JSONCensus.SortCSVFileWriteInJsonAndReturnLastData(filepath, jsonPathstateCensus, "DensityPerSqKm");
-            Assert.AreEqual("86", lastValue);
+            string lastValue = JSONCensus.SortCSVFileOnNumbersAndWriteInJsonAndReturnData(filepath, jsonPathstateCensus, "DensityPerSqKm");
+            Assert.AreEqual("52", lastValue);
         }
 
+        [Test]
+        public void GivenCSVAndJsonPathToAddIntoJSon_AfterSortingOnArea_WhenAnalyse_ReturnlastState()
+        {
+            string lastValue = JSONCensus.SortCSVFileOnNumbersAndWriteInJsonAndReturnData(filepath, jsonPathstateCensus, "AreaInSqKm");
+            Assert.AreEqual("3702", lastValue);
+        }
     }
 }
