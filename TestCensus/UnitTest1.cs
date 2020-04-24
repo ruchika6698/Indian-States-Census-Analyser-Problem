@@ -24,8 +24,8 @@ namespace CensusAnalyzer
         [Test]
         public void GiventheStatesCensusCSVfile_WhenAnalyse_ShouldRecordNumberOfRecordmatches()
         {
-            int actual = csvstatecensus(filepath);
-            Assert.AreEqual(30, actual);
+            int actual = CSVOperations.numberOfRecords(filepath);
+            Assert.AreEqual(29, actual);
         }
         /// <summary>
         ///TC-1.2:If file incorrect then throw custom exception
@@ -71,7 +71,7 @@ namespace CensusAnalyzer
         public void GivenCSVStateCodeFile_WhenAnalyse_ShouldRecordNumberOfRecordmatcheStateCode()
         {
             int actual = statesCodeCSV(statecode);
-            Assert.AreEqual(38, actual);
+            Assert.AreEqual(37, actual);
         }
         /// <summary>
         ///TC-2.2:If file incorrect then throw custom exception for statecode csv
