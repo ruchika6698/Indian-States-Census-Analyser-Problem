@@ -169,5 +169,20 @@ namespace CensusAnalyzer
             int count = JSONCensus.SortCSVFileWriteInJsonAndReturnNumberOfStatesSorted(uscensus, jsonPathUSCensus, "Population");
             Assert.NotZero(count);
         }
+        /// <summary>
+        /// UC-10:  the state of the CSV and json path to add into json after sorted based on population and density
+        /// </summary> 
+        [Test]
+        public void GivenCSVAndJsonPathToAddIntoJSon_AfterSortingOnPopulationDensity_WhenAnalyse_ReturnPopulationDensity()
+        {
+            string PopulationDensity = JSONCensus.SortCSVFileOnNumbersAndWriteInJsonAndReturnData(uscensus, jsonPathUSCensus, "Population Density");
+            Assert.AreEqual("3805.61", PopulationDensity);
+        }
+        [Test]
+        public void GivenCSVAndJsonPathToAddIntoJSon_AfterSortingOnDensityArea_WhenAnalyse_ReturnPopulationArea()
+        {
+            string Totalarea = JSONCensus.SortCSVFileOnNumbersAndWriteInJsonAndReturnData(uscensus, jsonPathUSCensus, "Total area");
+            Assert.AreEqual("1723338.01", Totalarea);
+        }
     }
 }
