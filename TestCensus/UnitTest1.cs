@@ -2,7 +2,7 @@ using NUnit.Framework;
 using System;
 using CensusAnalyzer;
 using static CensusAnalyzer.StateCensusAnalyzer;
-using static CensusAnalyzer.CSVStatesCensus;
+using static CensusAnalyzer.StateCodeCensusDAO;
 using CensusAnalyser;
 using Newtonsoft.Json.Linq;
 
