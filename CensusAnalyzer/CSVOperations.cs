@@ -165,29 +165,6 @@ namespace CensusAnalyzer
             return val;
         }
         /// <summary>
-        ///method to check population is sorted or not
-        /// </summary>
-        public static int SortJsonBasedOnKeyAndReturnNumberOfStatesSorted(string jsonPath, string key)
-        {
-            int count = 0;
-            string jsonFile = File.ReadAllText(jsonPath);
-            JArray stateCensusrrary = JArray.Parse(jsonFile);
-            for (int i = 0; i < stateCensusrrary.Count - 1; i++)
-            {
-                for (int j = 0; j < stateCensusrrary.Count - i - 1; j++)
-                {
-                    if (stateCensusrrary[j][key].ToString().CompareTo(stateCensusrrary[j + 1][key].ToString()) > 0)
-                    {
-                        var temp = stateCensusrrary[j + 1];
-                        stateCensusrrary[j + 1] = stateCensusrrary[j];
-                        stateCensusrrary[j] = temp;
-                        count++;
-                    }
-                }
-            }
-            return count;
-        }
-        /// <summary>
         ///sorting for state population,Density and area
         /// </summary>
         public static JArray SortJsonBasedOnKeyAndValueIsNumber(string jsonPath, string key)

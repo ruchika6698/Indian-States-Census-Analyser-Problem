@@ -1,6 +1,6 @@
 ﻿using static CensusAnalyzer.StateCensusAnalyzer;
 using static CensusAnalyzer.StateCodeCensusDAO;
-using static CensusAnalyzer.USCensusData;
+using static CensusAnalyzer.USCensusDataDAO;
 
 namespace CensusAnalyzer
 {
@@ -14,9 +14,9 @@ namespace CensusAnalyzer
         {
             return new StateCodeCensusDAO();
         }
-        public static USCensusData InstanceOfUSCensus()
+        public static USCensusDataDAO InstanceOfUSCensus()
         {
-            return new USCensusData();
+            return new USCensusDataDAO();
         }
         /// <summary>
         ///Method to create object for State Census Data
@@ -41,8 +41,8 @@ namespace CensusAnalyzer
         /// </summary>
         public static GetUSCSVCount DelegateofUSCensusData()
         {
-            USCensusData csvUSCensus = InstanceOfUSCensus();
-            GetUSCSVCount getCSVCount = new GetUSCSVCount(USCensusData.USCensusRecords);
+            USCensusDataDAO csvUSCensus = InstanceOfUSCensus();
+            GetUSCSVCount getCSVCount = new GetUSCSVCount(USCensusDataDAO.USCensusRecords);
             return getCSVCount;
         }
     }
