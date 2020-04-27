@@ -9,6 +9,9 @@ namespace CensusAnalyser
 {
     public class JSONCensus
     {
+        private static object csv_records;
+        private static object dataInFile;
+
         /// <summary>
         ///Method for sort First value from json file
         /// </summary>
@@ -22,6 +25,21 @@ namespace CensusAnalyser
             {
                 using (var w = new ChoJSONWriter(sb))
                     w.Write(p);
+                int index = 0;
+                // check given file and convert the data relavent format
+                // if fileName or FilePath Contain uscensus => ie.. US Census file 
+                if (jsonFilepath.ToLower().Contains("uscensusdata"))
+                {
+                    dataInFile = csv_records.ToDictionary(x => index = index + 1, x => new UsCensusModelClass(x));
+                }
+                else if (jsonFilepath.ToLower().Contains("statecensus"))
+                {
+                    dataInFile = csv_records.ToDictionary(x => index = index + 1, x => new StateCensusModelClass(x));
+                }
+                else if (jsonFilepath.ToLower().Contains("statecode"))
+                {
+                    dataInFile = csv_records.ToDictionary(x => index = index + 1, x => new StateCodeModelClass(x));
+                }
             }
             File.WriteAllText(jsonFilepath, sb.ToString());
             JArray arr = CSVOperations.SortJsonBasedOnKey(jsonFilepath, key);
