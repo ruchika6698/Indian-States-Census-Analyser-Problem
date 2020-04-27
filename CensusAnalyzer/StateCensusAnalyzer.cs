@@ -40,6 +40,12 @@ namespace CensusAnalyzer
             }
         }
 
+       
+        public string CheckForState(string jsonPathstateCensus, string v1, string v2)
+        {
+            throw new NotImplementedException();
+        }
+
         int ICSVBuilder.numberOfRecords(string filepath, char delimiter, string header)
         {
             throw new NotImplementedException();
@@ -50,7 +56,7 @@ namespace CensusAnalyzer
             throw new NotImplementedException();
         }
 
-        public string CheckForState(string jsonPathstateCensus, string v1, string v2)
+        int ICSVBuilder.USCensusRecords(string uscensus)
         {
             throw new NotImplementedException();
         }

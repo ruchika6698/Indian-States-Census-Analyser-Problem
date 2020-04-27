@@ -25,12 +25,18 @@ namespace CensusAnalyzer
                 throw;
             }
         }
+
         int ICSVBuilder.numberOfRecords(string filepath, char delimiter, string header)
         {
             throw new NotImplementedException();
         }
 
         int ICSVBuilder.getDataFromCSVFile(string statecode, char delimiter, string header)
+        {
+            throw new NotImplementedException();
+        }
+
+        int ICSVBuilder.USCensusRecords(string uscensus)
         {
             throw new NotImplementedException();
         }
