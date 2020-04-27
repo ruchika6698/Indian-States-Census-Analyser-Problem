@@ -2,11 +2,8 @@
 using CensusAnalyzer;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
 using System.IO;
 using System.Text;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace CensusAnalyser
 {

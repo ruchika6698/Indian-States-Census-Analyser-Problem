@@ -1,10 +1,7 @@
 using NUnit.Framework;
-using System;
-using CensusAnalyzer;
 using static CensusAnalyzer.StateCensusAnalyzer;
 using static CensusAnalyzer.StateCodeCensusDAO;
 using CensusAnalyser;
-using Newtonsoft.Json.Linq;
 
 namespace CensusAnalyzer
 {
@@ -72,7 +69,7 @@ namespace CensusAnalyzer
         [Test]
         public void GivenCSVStateCodeFile_WhenAnalyse_ShouldRecordNumberOfRecordmatcheStateCode()
         {
-            int actual = statesCodeCSV(statecode);
+            int actual = CSVOperations.numberOfRecords(statecode);
             Assert.AreEqual(37, actual);
         }
         /// <summary>
