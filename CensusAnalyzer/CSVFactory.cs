@@ -1,4 +1,10 @@
-﻿using static CensusAnalyzer.StateCensusAnalyzer;
+﻿///-----------------------------------------------------------------
+///   Class:       CSVFactory.cs
+///   Description: Create a object for StateCensus Data,StateCode and USCensus
+///   Author:      Ruchika                   Date: 27/4/2020
+///-----------------------------------------------------------------
+
+using static CensusAnalyzer.StateCensusAnalyzer;
 using static CensusAnalyzer.StateCodeCensusDAO;
 using static CensusAnalyzer.USCensusDataDAO;
 

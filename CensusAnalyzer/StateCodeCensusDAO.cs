@@ -1,4 +1,10 @@
-﻿using System;
+﻿///-----------------------------------------------------------------
+///   Class:       StateCodeCensusDAO.cs
+///   Description: method for StateCode File
+///   Author:      Ruchika                   Date: 27/4/2020
+///-----------------------------------------------------------------
+
+using System;
 
 namespace CensusAnalyzer
 {
@@ -13,10 +19,14 @@ namespace CensusAnalyzer
         {
             try
             {
+                //check file type
                 bool type = CSVOperations.CheckFileType(statecode, ".csv");
                 string[] records = CSVOperations.ReadCSVFile(statecode);
+                //check for delimiter
                 bool delimit = CSVOperations.CheckForDelimiter(records, delimiter);
+                //check for delimiter
                 bool head = CSVOperations.CheckForHeader(records, header);
+                //check for Number of Records
                 int count = CSVOperations.CountRecords(records);
                 return count;
             }

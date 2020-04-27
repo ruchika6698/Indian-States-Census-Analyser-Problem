@@ -1,3 +1,9 @@
+///-----------------------------------------------------------------
+///   Class:       Tests.cs
+///   Description: Test cases for India Census & USCensus analysis data
+///   Author:      Ruchika                   Date: 27/4/2020
+///-----------------------------------------------------------------
+
 using NUnit.Framework;
 using static CensusAnalyzer.StateCensusAnalyzer;
 using static CensusAnalyzer.StateCodeCensusDAO;

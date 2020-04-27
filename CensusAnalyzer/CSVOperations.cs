@@ -1,4 +1,10 @@
-﻿using Newtonsoft.Json.Linq;
+﻿///-----------------------------------------------------------------
+///   Class:       CSVOperations.cs
+///   Description: All methods are created for delimiter,count Records,Sorting etc.
+///   Author:      Ruchika                   Date: 27/4/2020
+///-----------------------------------------------------------------
+
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.IO;
 

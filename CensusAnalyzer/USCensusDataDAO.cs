@@ -1,4 +1,10 @@
-﻿using System;
+﻿///-----------------------------------------------------------------
+///   Class:      USCensusDataDAO.cs
+///   Description: method for USCensusData
+///   Author:      Ruchika                   Date: 27/4/2020
+///--------------------------------------------------------------
+
+using System;
 
 namespace CensusAnalyzer
 {
@@ -12,8 +18,10 @@ namespace CensusAnalyzer
         {
             try
             {
+                //check file type
                 bool type = CSVOperations.CheckFileType(uscensus, ".csv");
                 string[] records = CSVOperations.ReadCSVFile(uscensus);
+                //check for Number of Records
                 int count = CSVOperations.CountRecords(records);
                 return count;
             }

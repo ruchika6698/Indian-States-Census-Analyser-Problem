@@ -1,23 +1,23 @@
-﻿using System;
+﻿///-----------------------------------------------------------------
+///   Class:       StateCensusAnalyzer.cs
+///   Description: method for State Census Data File
+///   Author:      Ruchika                   Date: 27/4/2020
+///-----------------------------------------------------------------
+
+using System;
 
 namespace CensusAnalyzer
 {
     public class StateCensusAnalyzer : ICSVBuilder
     {
         public string filepath;
-        private static string jsonPathstateCensus;
-
+      
         /// <summary>
         /// Main Method
         /// </summary>
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to India state census Analyzer");
-            string val = CSVOperations.RetriveFirstDataOnKey(jsonPathstateCensus, "State");
-            string lat = CSVOperations.RetriveLastDataOnKey(jsonPathstateCensus, "State");
-
-            Console.WriteLine(val);
-            Console.WriteLine(lat);
+            Console.WriteLine("welcome to Census Analysis for country US and India");
         }
         /// <summary>
         ///Method to find Number of records in file for state census data
@@ -27,10 +27,14 @@ namespace CensusAnalyzer
         {
             try
             {
+                //check for filetype
                 bool type = CSVOperations.CheckFileType(filepath, ".csv");
                 string[] records = CSVOperations.ReadCSVFile(filepath);
+                //check for delimiter
                 bool delimit = CSVOperations.CheckForDelimiter(records, delimiter);
+                //check for Header
                 bool head = CSVOperations.CheckForHeader(records, header);
+                //check for Number of Records
                 int count = CSVOperations.CountRecords(records);
                 return count;
             }
@@ -38,12 +42,6 @@ namespace CensusAnalyzer
             {
                 throw;
             }
-        }
-
-       
-        public string CheckForState(string jsonPathstateCensus, string v1, string v2)
-        {
-            throw new NotImplementedException();
         }
 
         int ICSVBuilder.numberOfRecords(string filepath, char delimiter, string header)

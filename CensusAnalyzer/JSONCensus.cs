@@ -1,4 +1,10 @@
-﻿using ChoETL;
+﻿///-----------------------------------------------------------------
+///   Class:       JSONCensus.cs
+///   Description: CSV to JSON Conversion functions
+///   Author:      Ruchika                   Date: 27/4/2020
+///-----------------------------------------------------------------
+
+using ChoETL;
 using CensusAnalyzer;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
