@@ -1,11 +1,11 @@
 ///-----------------------------------------------------------------
-///   Class:       Tests.cs
+///   Class:       Tests
 ///   Description: Test cases for India Census & USCensus analysis data
 ///   Author:      Ruchika                   Date: 27/4/2020
-///-----------------------------------------------------------------
+///------------------------------------------------------------------
 
 using NUnit.Framework;
-using static CensusAnalyzer.StateCensusAnalyzer;
+using static CensusAnalyzer.IndianCensusData;
 using static CensusAnalyzer.StateCodeCensusDAO;
 using CensusAnalyser;
 
@@ -13,13 +13,13 @@ namespace CensusAnalyzer
 {
     public class Tests
     {
-        GetCSVCount csvstatecensus = CSVFactory.DelegateofStateCensusAnalyse();
+        GetIndianCensusCSVCount csvstatecensus = CSVFactory.DelegateofStateCensusAnalyse();
         GetCountFromCSVStates statesCodeCSV = CSVFactory.DelegateofStatecode();
 
-        public string filepath = @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCensusData.csv";
+        public string IndianCensusdata = @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCensusData.csv";
         public string statecode = @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCode.csv";
         public string uscensus = @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\USCensusData.csv";
-        public string jsonPathstateCensus = @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCensusData.JSON";
+        public string jsonPathIndianCensus = @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCensusData.JSON";
         public string jsonPathstatecode = @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCode.JSON";
         public string jsonPathUSCensus = @"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\USCensusData.JSON";
 
@@ -29,7 +29,7 @@ namespace CensusAnalyzer
         [Test]
         public void GiventheStatesCensusCSVfile_WhenAnalyse_ShouldRecordNumberOfRecordmatches()
         {
-            int actual = CSVOperations.numberOfRecords(filepath);
+            int actual = CSVOperations.numberOfRecords(IndianCensusdata);
             Assert.AreEqual(29, actual);
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace CensusAnalyzer
         [Test]
         public void GivenIncorrectDelimiter_WhenAnalyse_ShouldThrowCensusAnalyserException()
         {
-            var incorrectDelimiter = Assert.Throws<CustomException>(() => csvstatecensus(filepath, '.'));
+            var incorrectDelimiter = Assert.Throws<CustomException>(() => csvstatecensus(IndianCensusdata, '.'));
             Assert.AreEqual("Incorrect Delimiter", incorrectDelimiter.GetMessage);
         }
         /// <summary>
@@ -65,7 +65,7 @@ namespace CensusAnalyzer
         [Test]
         public void GivenIncorrectHeader_WhenAnalyse_ShouldThrowCensusAnalyserException()
         {
-            var incorrectHeader = Assert.Throws<CustomException>(() => csvstatecensus(filepath, ',', "St,Population,AreaInSqKm,DensityPerSqKm"));
+            var incorrectHeader = Assert.Throws<CustomException>(() => csvstatecensus(IndianCensusdata, ',', "St,Population,AreaInSqKm,DensityPerSqKm"));
             Assert.AreEqual("Incorrect header", incorrectHeader.GetMessage);
         }
 
@@ -102,7 +102,7 @@ namespace CensusAnalyzer
         [Test]
         public void GivenIncorrectDelimiter_WhenAnalyse_ShouldThrowExceptionforstatecodeCSV()
         {
-            var incorrectDelimiter = Assert.Throws<CustomException>(() => statesCodeCSV(filepath, '.'));
+            var incorrectDelimiter = Assert.Throws<CustomException>(() => statesCodeCSV(IndianCensusdata, '.'));
             Assert.AreEqual("Incorrect Delimiter", incorrectDelimiter.GetMessage);
         }
         /// <summary>
@@ -111,7 +111,7 @@ namespace CensusAnalyzer
         [Test]
         public void GivenIncorrectHeader_WhenAnalyse_ShouldThrowExceptionforstatecodeCSV()
         {
-            var incorrectHeader = Assert.Throws<CustomException>(() => statesCodeCSV(filepath, ',', "SrN,State,TIN,StateCode"));
+            var incorrectHeader = Assert.Throws<CustomException>(() => statesCodeCSV(IndianCensusdata, ',', "SrN,State,TIN,StateCode"));
             Assert.AreEqual("Incorrect header", incorrectHeader.GetMessage);
         }
         /// <summary>
@@ -120,9 +120,9 @@ namespace CensusAnalyzer
         [Test]
         public void GivenCSVAndJsonPathToAddIntoJSon_AfterSorting_WhenAnalyse_ReturnFirstandLastState()
         {
-            string firstValue = JSONCensus.SortCSVFileWriteInJsonAndReturnFirstData(filepath, jsonPathstateCensus, "State");
+            string firstValue = JSONCensus.SortCSVFileWriteInJsonAndReturnFirstData(IndianCensusdata, jsonPathIndianCensus, "State");
             Assert.AreEqual("Andhra Pradesh", firstValue);
-            string lastValue = JSONCensus.SortCSVFileWriteInJsonAndReturnLastData(filepath, jsonPathstateCensus, "State");
+            string lastValue = JSONCensus.SortCSVFileWriteInJsonAndReturnLastData(IndianCensusdata, jsonPathIndianCensus, "State");
             Assert.AreEqual("West Bengal", lastValue);
         }
         /// <summary>
@@ -142,7 +142,7 @@ namespace CensusAnalyzer
         [Test]
         public void GivenCsvStateCensusAndJson_ToSortFromMostPopulousToLeast_WhenAnalyse_ReturnTheNumberOfSatetesSorted()
         {
-            string population = JSONCensus.SortCSVInJsonAndReturnData(filepath, jsonPathstateCensus, "Population");
+            string population = JSONCensus.SortCSVInJsonAndReturnData(IndianCensusdata, jsonPathIndianCensus, "Population");
             Assert.AreEqual("199812341", population);
         }
         /// <summary>
@@ -151,7 +151,7 @@ namespace CensusAnalyzer
         [Test]
         public void GivenCSVAndJsonPathToAddIntoJSon_AfterSortingOnDensity_WhenAnalyse_ReturnlastState()
         {
-            string lastValue = JSONCensus.SortCSVInJsonAndReturnData(filepath, jsonPathstateCensus, "DensityPerSqKm");
+            string lastValue = JSONCensus.SortCSVInJsonAndReturnData(IndianCensusdata, jsonPathIndianCensus, "DensityPerSqKm");
             Assert.AreEqual("1102", lastValue);
         }
         /// <summary>
@@ -160,7 +160,7 @@ namespace CensusAnalyzer
         [Test]
         public void GivenCSVAndJsonPathToAddIntoJSon_AfterSortingOnArea_WhenAnalyse_ReturnlastState()
         {
-            string lastValue = JSONCensus.SortCSVInJsonAndReturnData(filepath, jsonPathstateCensus, "AreaInSqKm");
+            string lastValue = JSONCensus.SortCSVInJsonAndReturnData(IndianCensusdata, jsonPathIndianCensus, "AreaInSqKm");
             Assert.AreEqual("342239", lastValue);
         }
         /// <summary>
@@ -202,7 +202,7 @@ namespace CensusAnalyzer
         [Test]
         public void GivenCSVAndJsonPathToAddIntoJSon_AfterSortingOnDensityArea_WhenAnalyse_ReturnPopulationstateforIndiaAndUS()
         {
-            string lastValue = JSONCensus.SortCSVInJsonAndReturnData(filepath, jsonPathstateCensus, "DensityPerSqKm");
+            string lastValue = JSONCensus.SortCSVInJsonAndReturnData(IndianCensusdata, jsonPathIndianCensus, "DensityPerSqKm");
             string PopulationDensity = JSONCensus.SortCSVInJsonAndReturnData(uscensus, jsonPathUSCensus, "Population Density");
             Assert.IsTrue(lastValue.ToString().CompareTo(PopulationDensity.ToString()) < 0);
         }

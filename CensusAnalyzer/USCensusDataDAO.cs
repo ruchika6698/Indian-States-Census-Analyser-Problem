@@ -1,5 +1,5 @@
 ﻿///-----------------------------------------------------------------
-///   Class:      USCensusDataDAO.cs
+///   Class:      USCensusDataDAO
 ///   Description: method for USCensusData
 ///   Author:      Ruchika                   Date: 27/4/2020
 ///--------------------------------------------------------------

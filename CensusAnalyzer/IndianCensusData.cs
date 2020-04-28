@@ -1,5 +1,5 @@
 ﻿///-----------------------------------------------------------------
-///   Class:       StateCensusAnalyzer.cs
+///   Class:       IndianCensusData
 ///   Description: method for State Census Data File
 ///   Author:      Ruchika                   Date: 27/4/2020
 ///-----------------------------------------------------------------
@@ -8,7 +8,7 @@ using System;
 
 namespace CensusAnalyzer
 {
-    public class StateCensusAnalyzer : ICSVBuilder
+    public class IndianCensusData : ICSVBuilder
     {
         public string filepath;
       
@@ -22,7 +22,7 @@ namespace CensusAnalyzer
         /// <summary>
         ///Method to find Number of records in file for state census data
         /// </summary>
-        public delegate int GetCSVCount(string filepath, char delimiter = ',', string header = "State,Population,AreaInSqKm,DensityPerSqKm");
+        public delegate int GetIndianCensusCSVCount(string filepath, char delimiter = ',', string header = "State,Population,AreaInSqKm,DensityPerSqKm");
         public static int numberOfRecords(string filepath, char delimiter = ',', string header = "State,Population,AreaInSqKm,DensityPerSqKm")
         {
             try

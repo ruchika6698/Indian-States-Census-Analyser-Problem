@@ -1,5 +1,5 @@
 ﻿///-----------------------------------------------------------------
-///   Class:       JSONCensus.cs
+///   Class:       JSONCensus
 ///   Description: CSV to JSON Conversion functions
 ///   Author:      Ruchika                   Date: 27/4/2020
 ///-----------------------------------------------------------------
@@ -18,19 +18,23 @@ namespace CensusAnalyser
         /// <summary>
         ///Method for sort First value from json file
         /// </summary>
-        public static string SortCSVFileWriteInJsonAndReturnFirstData(string filePath, string jsonFilepath, string key)
+        public static string SortCSVFileWriteInJsonAndReturnFirstData(string path, string jsonFilepath, string key)
         {
-            string re = File.ReadAllText(filePath);
-            StringBuilder sb = new StringBuilder();
-            using (var p = ChoCSVReader.LoadText(re)
+            //create a object to read file
+            string csvfile = File.ReadAllText(path);
+            StringBuilder json = new StringBuilder();
+            //read a csv file
+            using (var p = ChoCSVReader.LoadText(csvfile)
                 .WithFirstLineHeader()
                 )
             {
-                using (var w = new ChoJSONWriter(sb))
+                //write json file
+                using (var w = new ChoJSONWriter(json))
                     w.Write(p);
             }
-            File.WriteAllText(jsonFilepath, sb.ToString());
+            File.WriteAllText(jsonFilepath, json.ToString());
             JArray arr = CSVOperations.SortJsonBasedOnKey(jsonFilepath, key);
+            //convert into json format
             var jsonArr = JsonConvert.SerializeObject(arr, Formatting.Indented);
             File.WriteAllText(jsonFilepath, jsonArr);
 
@@ -39,19 +43,23 @@ namespace CensusAnalyser
         /// <summary>
         ///Method for sort last value from json file
         /// </summary>
-        public static string SortCSVFileWriteInJsonAndReturnLastData(string filePath, string jsonFilepath, string key)
+        public static string SortCSVFileWriteInJsonAndReturnLastData(string path, string jsonFilepath, string key)
         {
-            string re = File.ReadAllText(filePath);
-            StringBuilder sb = new StringBuilder();
-            using (var p = ChoCSVReader.LoadText(re)
+            //create a object to read file
+            string csvfile = File.ReadAllText(path);
+            StringBuilder json = new StringBuilder();
+            //read a csv file
+            using (var p = ChoCSVReader.LoadText(csvfile)
                 .WithFirstLineHeader()
                 )
             {
-                using (var w = new ChoJSONWriter(sb))
+                //write json file
+                using (var w = new ChoJSONWriter(json))
                     w.Write(p);
             }
-            File.WriteAllText(jsonFilepath, sb.ToString());
+            File.WriteAllText(jsonFilepath, json.ToString());
             JArray arr = CSVOperations.SortJsonBasedOnKey(jsonFilepath, key);
+            //convert into json format
             var jsonArr = JsonConvert.SerializeObject(arr, Formatting.Indented);
             File.WriteAllText(jsonFilepath, jsonArr);
 
@@ -60,19 +68,23 @@ namespace CensusAnalyser
         /// <summary>
         ///sorting the state for population,density and area
         /// </summary>
-        public static string SortCSVInJsonAndReturnData(string filePath, string jsonFilepath, string key)
+        public static string SortCSVInJsonAndReturnData(string path, string jsonFilepath, string key)
         {
-            string re = File.ReadAllText(filePath);
-            StringBuilder sb = new StringBuilder();
-            using (var p = ChoCSVReader.LoadText(re)
+            //create a object to read file
+            string csvfile = File.ReadAllText(path);
+            StringBuilder json = new StringBuilder();
+            //read a csv file
+            using (var p = ChoCSVReader.LoadText(csvfile)
                 .WithFirstLineHeader()
                 )
             {
-                using (var w = new ChoJSONWriter(sb))
+                //write json file
+                using (var w = new ChoJSONWriter(json))
                     w.Write(p);
             }
-            File.WriteAllText(jsonFilepath, sb.ToString());
+            File.WriteAllText(jsonFilepath, json.ToString());
             JArray arr = CSVOperations.SortJsonBasedOnKeyAndValueIsNumber(jsonFilepath, key);
+            //convert into json format
             var jsonArr = JsonConvert.SerializeObject(arr, Formatting.Indented);
             File.WriteAllText(jsonFilepath, jsonArr);
 

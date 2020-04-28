@@ -1,10 +1,10 @@
 ﻿///-----------------------------------------------------------------
-///   Class:       CSVFactory.cs
+///   Class:       CSVFactory
 ///   Description: Create a object for StateCensus Data,StateCode and USCensus
 ///   Author:      Ruchika                   Date: 27/4/2020
 ///-----------------------------------------------------------------
 
-using static CensusAnalyzer.StateCensusAnalyzer;
+using static CensusAnalyzer.IndianCensusData;
 using static CensusAnalyzer.StateCodeCensusDAO;
 using static CensusAnalyzer.USCensusDataDAO;
 
@@ -12,9 +12,9 @@ namespace CensusAnalyzer
 {
     public class CSVFactory
     {
-        public static StateCensusAnalyzer InstanceOfStateCensusAnalyzer()
+        public static IndianCensusData InstanceOfStateCensusAnalyzer()
         {
-            return new StateCensusAnalyzer();
+            return new IndianCensusData();
         }
         public static StateCodeCensusDAO InstanceOfCSVStatesCensus()
         {
@@ -27,10 +27,10 @@ namespace CensusAnalyzer
         /// <summary>
         ///Method to create object for State Census Data
         /// </summary>
-        public static GetCSVCount DelegateofStateCensusAnalyse()
+        public static GetIndianCensusCSVCount DelegateofStateCensusAnalyse()
         {
-            StateCensusAnalyzer csvStateCensus = InstanceOfStateCensusAnalyzer();
-            GetCSVCount getCSVCount = new GetCSVCount(StateCensusAnalyzer.numberOfRecords);
+            IndianCensusData csvStateCensus = InstanceOfStateCensusAnalyzer();
+            GetIndianCensusCSVCount getCSVCount = new GetIndianCensusCSVCount(IndianCensusData.numberOfRecords);
             return getCSVCount;
         }
         /// <summary>

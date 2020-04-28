@@ -1,5 +1,5 @@
 ﻿///-----------------------------------------------------------------
-///   Class:     CustomException.cs
+///   Class:     CustomException
 ///   Description: Class Custom Exception for throw Exception
 ///   Author:      Ruchika                   Date: 27/4/2020
 ///-----------------------------------------------------------------
@@ -16,7 +16,7 @@ namespace CensusAnalyzer
         public string message;
        
         public string GetMessage { get => this.message; }
-        //constructor
+        //constructor for message
         public CustomException(string message)
         {
             this.message = message;

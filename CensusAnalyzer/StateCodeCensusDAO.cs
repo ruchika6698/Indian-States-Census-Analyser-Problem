@@ -1,5 +1,5 @@
 ﻿///-----------------------------------------------------------------
-///   Class:       StateCodeCensusDAO.cs
+///   Class:       StateCodeCensusDAO
 ///   Description: method for StateCode File
 ///   Author:      Ruchika                   Date: 27/4/2020
 ///-----------------------------------------------------------------
@@ -11,7 +11,7 @@ namespace CensusAnalyzer
     public class StateCodeCensusDAO : ICSVBuilder
     {
         public string statecode;
-        public delegate int GetCountFromCSVStates(string path, char delimiter = ',', string header = "SrNo,State,TIN,StateCode");
+        public delegate int GetCountFromCSVStates(string statecode, char delimiter = ',', string header = "SrNo,State,TIN,StateCode");
         /// <summary>
         ///Method to find Number of records in file for StateCode csv file
         /// </summary>
