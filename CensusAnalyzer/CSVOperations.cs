@@ -18,7 +18,9 @@ namespace CensusAnalyzer
         /// <summary>
         ///Method to find Number of records in file for state census data 
         /// </summary>
-        public static int numberOfRecords(string path)
+        /// <param name="Path"> filepath </param>
+        /// <returns> Number Of Records </returns>
+        public static int NumberOfRecords(string path)
         {
             string[] array = File.ReadAllLines(path);
             return array.Length - 1;
@@ -27,6 +29,8 @@ namespace CensusAnalyzer
         /// <summary>
         ///Method to find Number of records in file for US Census data using map
         /// </summary>
+        /// <param name="records"> number of records </param>
+        /// <returns> Count Records for US census </returns>
         public static int CountRecords(string[] records)
         {
             int k = 1;
@@ -57,6 +61,8 @@ namespace CensusAnalyzer
         /// <summary>
         ///Method to find file path is correct or incorrect
         /// </summary>
+        /// <param name="filepath"> filepath </param>
+        /// <returns> File path incorrect </returns>
         public static string[] ReadCSVFile(string filepath)
         {
             //file path is incorrect then throw exception that File type incorrect
@@ -67,13 +73,16 @@ namespace CensusAnalyzer
             }
             catch (FileNotFoundException)
             {
-                throw new CustomException("file path incorrect");
+                throw new CustomException("file path incorrect", CustomException.ExceptionType.File_Path_Incorrect);
             }
         }
 
         /// <summary>
         ///Method to find file type is correct or incorrect
         /// </summary>
+        /// <param name="filepath"> filepath </param>
+        /// <param name="type"> filetype  </param>
+        /// <returns> Wrong file Extention </returns>
         public static bool CheckFileType(string filepath, string type)
         {
             try
@@ -83,17 +92,20 @@ namespace CensusAnalyzer
                 {
                     return true;
                 }
-                throw new CustomException("File type incorrect");
+                throw new CustomException("File type incorrect", CustomException.ExceptionType.File_Type_Incorrect);
             }
-            catch (CustomException)
+            catch (CustomException e)
             {
-                throw;
+                throw e;
             }
         }
 
         /// <summary>
         ///Method to find file is correct but derimiter incorrect
         /// </summary>
+        /// <param name="fileData"> fileData </param>
+        /// <param name="delimiter"> delimiter  </param>
+        /// <returns> check for delimiter </returns>
         public static bool CheckForDelimiter(string[] fileData, char delimiter)
         {
             try
@@ -102,19 +114,22 @@ namespace CensusAnalyzer
                 {
                     if (str.Split(delimiter).Length != 5 && str.Split(delimiter).Length != 4 && str.Split(delimiter).Length != 2)
                     {
-                        throw new CustomException("Incorrect Delimiter");
+                        throw new CustomException("Incorrect Delimiter", CustomException.ExceptionType.Incorrect_Delimiter);
                     }
                 }
                 return true;
             }
-            catch (CustomException)
+            catch (CustomException e)
             {
-                throw;
+                throw e;
             }
         }
         /// <summary>
         ///Method to find file is correct but header incorrect
         /// </summary>
+        /// <param name="fileheader"> fileheader </param>
+        /// <param name="header"> header  </param>
+        /// <returns> check for header </returns>
         public static bool CheckForHeader(string[] fileheader, string header)
         {
             try
@@ -124,17 +139,20 @@ namespace CensusAnalyzer
                 {
                     return true;
                 }
-                throw new CustomException("Incorrect header");
+                throw new CustomException("Incorrect header", CustomException.ExceptionType.Incorrect_Header);
             }
-            catch (CustomException)
+            catch (CustomException e)
             {
-                throw;
+                throw e;
             }
         }
 
         /// <summary>
         ///Method for sorting
         /// </summary>
+        /// <param name="jsonPath"> jsonPath </param>
+        /// <param name="key"> key  </param>
+        /// <returns> sorting </returns>
         public static JArray SortJsonBasedOnKey(string jsonPath, string key)
         {
             string jsonFile = File.ReadAllText(jsonPath);
@@ -159,6 +177,9 @@ namespace CensusAnalyzer
         /// <summary>
         ///Method for Find first state data from json file and sort alphabatically
         /// </summary>
+        /// <param name="jsonPath"> jsonPath </param>
+        /// <param name="key"> key  </param>
+        /// <returns> Retrive First Data On Key </returns>
         public static string RetriveFirstDataOnKey(string jsonPath, string key)
         {
             string jfile = File.ReadAllText(jsonPath);
@@ -171,6 +192,9 @@ namespace CensusAnalyzer
         /// <summary>
         ///Method for Find Last test data from json file and sort alphabatically
         /// </summary>
+        /// /// <param name="jsonPath"> jsonPath </param>
+        /// <param name="key"> key  </param>
+        /// <returns> Retrive Last Data On Key </returns>
         public static string RetriveLastDataOnKey(string jsonPath, string key)
         {
             string jfile = File.ReadAllText(jsonPath);
@@ -183,6 +207,9 @@ namespace CensusAnalyzer
         /// <summary>
         ///sorting for state population,Density and area
         /// </summary>
+        /// <param name="jsonPath"> jsonPath </param>
+        /// <param name="key"> key  </param>
+        /// <returns> sort based on Key </returns>
         public static JArray SortJsonBasedOnKeyAndValueIsNumber(string jsonPath, string key)
         {
             string jsonFile = File.ReadAllText(jsonPath);

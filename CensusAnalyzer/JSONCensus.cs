@@ -18,6 +18,10 @@ namespace CensusAnalyser
         /// <summary>
         ///Method for sort First value from json file
         /// </summary>
+        /// <param name="path"> State Code data path </param>
+        /// <param name="jsonFilepath"> Delimiter </param>
+        /// <param name="key"> Header </param>
+        /// <returns> Sort the file and return first value </returns>
         public static string SortCSVFileWriteInJsonAndReturnFirstData(string path, string jsonFilepath, string key)
         {
             //create a object to read file
@@ -43,6 +47,10 @@ namespace CensusAnalyser
         /// <summary>
         ///Method for sort last value from json file
         /// </summary>
+        /// <param name="path"> State Code data path </param>
+        /// <param name="jsonFilepath"> Delimiter </param>
+        /// <param name="key"> Header </param>
+        /// <returns> Sort the file and return Last value </returns>
         public static string SortCSVFileWriteInJsonAndReturnLastData(string path, string jsonFilepath, string key)
         {
             //create a object to read file
@@ -68,6 +76,10 @@ namespace CensusAnalyser
         /// <summary>
         ///sorting the state for population,density and area
         /// </summary>
+        /// <param name="path"> State Code data path </param>
+        /// <param name="jsonFilepath"> Delimiter </param>
+        /// <param name="key"> Header </param>
+        /// <returns> sorting the state for population,density and area </returns>
         public static string SortCSVInJsonAndReturnData(string path, string jsonFilepath, string key)
         {
             //create a object to read file

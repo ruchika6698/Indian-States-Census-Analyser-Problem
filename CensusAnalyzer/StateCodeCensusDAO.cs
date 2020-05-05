@@ -1,6 +1,6 @@
 ﻿///-----------------------------------------------------------------
 ///   Class:       StateCodeCensusDAO
-///   Description: method for StateCode File
+///   Description: class for StateCode File
 ///   Author:      Ruchika                   Date: 27/4/2020
 ///-----------------------------------------------------------------
 
@@ -10,43 +10,40 @@ namespace CensusAnalyzer
 {
     public class StateCodeCensusDAO : ICSVBuilder
     {
-        public string statecode;
+        public string stateCode;
         public delegate int GetCountFromCSVStates(string statecode, char delimiter = ',', string header = "SrNo,State,TIN,StateCode");
         /// <summary>
         ///Method to find Number of records in file for StateCode csv file
         /// </summary>
-        public static int getDataFromCSVFile(string statecode, char delimiter = ',', string header = "SrNo,State,TIN,StateCode")
+        /// <param name="stateCode"> State Code data path </param>
+        /// <param name="delimiter"> Delimiter </param>
+        /// <param name="header"> Header </param>
+        /// <returns> Data count,delimiter,header </returns>
+        public static int GetDataFromCSVFile(string stateCode, char delimiter = ',', string header = "SrNo,State,TIN,StateCode")
         {
-            try
-            {
-                //check file type
-                bool type = CSVOperations.CheckFileType(statecode, ".csv");
-                string[] records = CSVOperations.ReadCSVFile(statecode);
-                //check for delimiter
-                bool delimit = CSVOperations.CheckForDelimiter(records, delimiter);
-                //check for delimiter
-                bool head = CSVOperations.CheckForHeader(records, header);
-                //check for Number of Records
-                int count = CSVOperations.CountRecords(records);
-                return count;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            //check file type
+            bool type = CSVOperations.CheckFileType(stateCode, ".csv");
+            string[] records = CSVOperations.ReadCSVFile(stateCode);
+            //check for delimiter
+            bool delimit = CSVOperations.CheckForDelimiter(records, delimiter);
+            //check for delimiter
+            bool head = CSVOperations.CheckForHeader(records, header);
+            //check for Number of Records
+            int count = CSVOperations.CountRecords(records);
+            return count;
         }
 
-        int ICSVBuilder.numberOfRecords(string filepath, char delimiter, string header)
+        int ICSVBuilder.NumberOfRecords(string filePath, char delimiter, string header)
         {
             throw new NotImplementedException();
         }
 
-        int ICSVBuilder.getDataFromCSVFile(string statecode, char delimiter, string header)
+        int ICSVBuilder.GetDataFromCSVFile(string stateCode, char delimiter, string header)
         {
             throw new NotImplementedException();
         }
 
-        int ICSVBuilder.USCensusRecords(string uscensus)
+        int ICSVBuilder.USCensusRecords(string usCensus)
         {
             throw new NotImplementedException();
         }

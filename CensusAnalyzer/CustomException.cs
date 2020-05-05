@@ -14,12 +14,17 @@ namespace CensusAnalyzer
     public class CustomException : Exception
     {
         public string message;
-       
-        public string GetMessage { get => this.message; }
-        //constructor for message
-        public CustomException(string message)
+        public enum ExceptionType
         {
-            this.message = message;
+            File_Path_Incorrect,
+            File_Type_Incorrect,
+            Incorrect_Delimiter,
+            Incorrect_Header
+        }
+        public ExceptionType type;
+
+        public CustomException(string message, ExceptionType incorrect_Delimiter) : base(message)
+        {
         }
     }
 }

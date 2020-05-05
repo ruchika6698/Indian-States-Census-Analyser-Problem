@@ -9,10 +9,10 @@ namespace CensusAnalyzer
     public interface ICSVBuilder
     {
         //method for State Census Data
-        public int numberOfRecords(string filepath, char delimiter = ',', string header = "State,Population,AreaInSqKm,DensityPerSqKm");
+        public int NumberOfRecords(string filePath, char delimiter = ',', string header = "State,Population,AreaInSqKm,DensityPerSqKm");
         //method for State Code
-        public int getDataFromCSVFile(string statecode, char delimiter = ',', string header = "SrNo,State,TIN,StateCode");
+        public int GetDataFromCSVFile(string stateCode, char delimiter = ',', string header = "SrNo,State,TIN,StateCode");
         //method for USCensus Data
-        public int USCensusRecords(string uscensus);
+        public int USCensusRecords(string usCensus);
     }
 }

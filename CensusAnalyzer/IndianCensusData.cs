@@ -1,6 +1,6 @@
 ﻿///-----------------------------------------------------------------
 ///   Class:       IndianCensusData
-///   Description: method for State Census Data File
+///   Description: class for State Census Data File
 ///   Author:      Ruchika                   Date: 27/4/2020
 ///-----------------------------------------------------------------
 
@@ -10,7 +10,7 @@ namespace CensusAnalyzer
 {
     public class IndianCensusData : ICSVBuilder
     {
-        public string filepath;
+        public string filePath;
       
         /// <summary>
         /// Main Method
@@ -22,34 +22,31 @@ namespace CensusAnalyzer
         /// <summary>
         ///Method to find Number of records in file for state census data
         /// </summary>
-        public delegate int GetIndianCensusCSVCount(string filepath, char delimiter = ',', string header = "State,Population,AreaInSqKm,DensityPerSqKm");
-        public static int numberOfRecords(string filepath, char delimiter = ',', string header = "State,Population,AreaInSqKm,DensityPerSqKm")
+        /// <param name="filePath"> Indian census data path </param>
+        /// <param name="delimiter"> Delimiter </param>
+        /// <param name="header"> Header </param>
+        /// <returns> Indian Census Record </returns>
+        public delegate int GetIndianCensusCSVCount(string filePath, char delimiter = ',', string header = "State,Population,AreaInSqKm,DensityPerSqKm");
+        public static int NumberOfRecords(string filePath, char delimiter = ',', string header = "State,Population,AreaInSqKm,DensityPerSqKm")
         {
-            try
-            {
-                //check for filetype
-                bool type = CSVOperations.CheckFileType(filepath, ".csv");
-                string[] records = CSVOperations.ReadCSVFile(filepath);
-                //check for delimiter
-                bool delimit = CSVOperations.CheckForDelimiter(records, delimiter);
-                //check for Header
-                bool head = CSVOperations.CheckForHeader(records, header);
-                //check for Number of Records
-                int count = CSVOperations.CountRecords(records);
-                return count;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            //check for filetype
+            bool type = CSVOperations.CheckFileType(filePath, ".csv");
+            string[] records = CSVOperations.ReadCSVFile(filePath);
+            //check for delimiter
+            bool delimit = CSVOperations.CheckForDelimiter(records, delimiter);
+            //check for Header
+            bool head = CSVOperations.CheckForHeader(records, header);
+            //check for Number of Records
+            int count = CSVOperations.CountRecords(records);
+            return count;
         }
 
-        int ICSVBuilder.numberOfRecords(string filepath, char delimiter, string header)
+        int ICSVBuilder.NumberOfRecords(string filepath, char delimiter, string header)
         {
             throw new NotImplementedException();
         }
 
-        int ICSVBuilder.getDataFromCSVFile(string statecode, char delimiter, string header)
+        int ICSVBuilder.GetDataFromCSVFile(string statecode, char delimiter, string header)
         {
             throw new NotImplementedException();
         }

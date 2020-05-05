@@ -30,7 +30,7 @@ namespace CensusAnalyzer
         public static GetIndianCensusCSVCount DelegateofStateCensusAnalyse()
         {
             IndianCensusData csvStateCensus = InstanceOfStateCensusAnalyzer();
-            GetIndianCensusCSVCount getCSVCount = new GetIndianCensusCSVCount(IndianCensusData.numberOfRecords);
+            GetIndianCensusCSVCount getCSVCount = new GetIndianCensusCSVCount(IndianCensusData.NumberOfRecords);
             return getCSVCount;
         }
         /// <summary>
@@ -39,7 +39,7 @@ namespace CensusAnalyzer
         public static GetCountFromCSVStates DelegateofStatecode()
         {
             StateCodeCensusDAO statesCodeCSV = InstanceOfCSVStatesCensus();
-            GetCountFromCSVStates referToCSVSates = new GetCountFromCSVStates(StateCodeCensusDAO.getDataFromCSVFile);
+            GetCountFromCSVStates referToCSVSates = new GetCountFromCSVStates(StateCodeCensusDAO.GetDataFromCSVFile);
             return referToCSVSates;
         }
         /// <summary>

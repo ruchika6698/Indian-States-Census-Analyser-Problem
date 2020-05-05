@@ -1,6 +1,6 @@
 ﻿///-----------------------------------------------------------------
 ///   Class:      USCensusDataDAO
-///   Description: method for USCensusData
+///   Description: class for USCensusData
 ///   Author:      Ruchika                   Date: 27/4/2020
 ///--------------------------------------------------------------
 
@@ -13,32 +13,29 @@ namespace CensusAnalyzer
         /// <summary>
         ///Method to find Number of records in file for US Census Data csv file
         /// </summary>
-        public delegate int GetUSCSVCount(string uscensus);
-        public static int USCensusRecords(string uscensus)
+        /// <param name="uscensus"> uscensus data path </param>
+        /// <returns> US Census Record </returns>
+        public delegate int GetUSCSVCount(string usCensus);
+        public static int USCensusRecords(string usCensus)
         {
-            try
-            {
-                //check file type
-                bool type = CSVOperations.CheckFileType(uscensus, ".csv");
-                string[] records = CSVOperations.ReadCSVFile(uscensus);
-                //check for Number of Records
-                int count = CSVOperations.CountRecords(records);
-                return count;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            //check file type
+            bool type = CSVOperations.CheckFileType(usCensus, ".csv");
+            string[] records = CSVOperations.ReadCSVFile(usCensus);
+            //check for Number of Records
+            int count = CSVOperations.CountRecords(records);
+            return count;
         }
 
-        int ICSVBuilder.numberOfRecords(string filepath, char delimiter, string header)
+        int ICSVBuilder.NumberOfRecords(string filepath, char delimiter, string header)
         {
             throw new NotImplementedException();
         }
-        int ICSVBuilder.getDataFromCSVFile(string statecode, char delimiter, string header)
+
+        int ICSVBuilder.GetDataFromCSVFile(string statecode, char delimiter, string header)
         {
             throw new NotImplementedException();
         }
+
         int ICSVBuilder.USCensusRecords(string uscensus)
         {
             throw new NotImplementedException();
