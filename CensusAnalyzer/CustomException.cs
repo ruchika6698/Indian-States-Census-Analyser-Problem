@@ -21,7 +21,7 @@ namespace CensusAnalyzer
             Incorrect_Delimiter,
             Incorrect_Header
         }
-        public ExceptionType type;
+        public double GetMessage { get; set; }
 
         public CustomException(string message, ExceptionType incorrect_Delimiter) : base(message)
         {

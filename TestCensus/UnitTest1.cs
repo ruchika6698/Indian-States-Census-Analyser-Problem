@@ -45,7 +45,7 @@ namespace CensusAnalyzer
             }
             catch (CustomException e)
             {
-                Assert.AreEqual(e.type, CustomException.ExceptionType.File_Path_Incorrect);
+                Assert.AreEqual("file path incorrect", e.Message);
             }
         }
         /// <summary>
@@ -56,12 +56,11 @@ namespace CensusAnalyzer
         {
             try
             {
-                var incorrecttype = csvstatecensus(@"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCensusData.txt");
-                Assert.AreEqual("File type incorrect", incorrecttype);
+                var incorrecttype = Assert.Throws<CustomException>(() => csvstatecensus(@"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCensusData.txt"));
             }
             catch (CustomException e)
             {
-                Assert.AreEqual(e.type, CustomException.ExceptionType.File_Type_Incorrect);
+                Assert.AreEqual("File type incorrect", e.Message);
             }
         }
         /// <summary>
@@ -72,12 +71,11 @@ namespace CensusAnalyzer
         {
             try
             {
-                var incorrectDelimiter = csvstatecensus(IndianCensusdata, '.');
-                Assert.AreEqual("Incorrect Delimiter", incorrectDelimiter);
+                var incorrectDelimiter = Assert.Throws<CustomException>(() => csvstatecensus(IndianCensusdata, '.'));
             }
             catch (CustomException e)
             {
-                Assert.AreEqual(e.type, CustomException.ExceptionType.Incorrect_Delimiter);
+                Assert.AreEqual("Incorrect Delimiter", e.Message);
             }
         }
         /// <summary>
@@ -88,12 +86,11 @@ namespace CensusAnalyzer
         {
             try
             {
-                var incorrectHeader = csvstatecensus(IndianCensusdata, ',', "St,Population,AreaInSqKm,DensityPerSqKm");
-                Assert.AreEqual("Incorrect header", incorrectHeader);
+                var incorrectHeader = Assert.Throws<CustomException>(() => csvstatecensus(IndianCensusdata, ',', "St,Population,AreaInSqKm,DensityPerSqKm"));
             }
             catch (CustomException e)
             {
-                Assert.AreEqual(e.type, CustomException.ExceptionType.Incorrect_Header);
+                Assert.AreEqual("Incorrect header", e.Message);
             } 
         }
 
@@ -119,7 +116,7 @@ namespace CensusAnalyzer
             }
             catch (CustomException e)
             {
-                Assert.AreEqual(e.type, CustomException.ExceptionType.File_Path_Incorrect);
+                Assert.AreEqual("file path incorrect", e.Message);
             }
         }
         /// <summary>
@@ -130,12 +127,11 @@ namespace CensusAnalyzer
         {
             try
             {
-                var incorrecttype = statesCodeCSV(@"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCode.txt");
-                Assert.AreEqual("File type incorrect", incorrecttype);
+                var incorrecttype = Assert.Throws<CustomException>(() => statesCodeCSV(@"C:\Users\boss\source\repos\CensusAnalyzerProblem\CensusData\StateCode.txt"));
             }
             catch (CustomException e)
             {
-                Assert.AreEqual(e.type, CustomException.ExceptionType.File_Type_Incorrect);
+                Assert.AreEqual("File type incorrect", e.Message);
             }
         }
         /// <summary>
@@ -146,12 +142,11 @@ namespace CensusAnalyzer
         {
             try
             {
-                var incorrectDelimiter = statesCodeCSV(IndianCensusdata, '.');
-                Assert.AreEqual("Incorrect Delimiter", incorrectDelimiter);
+                var incorrectDelimiter = Assert.Throws<CustomException>(() => statesCodeCSV(IndianCensusdata, '.'));
             }
             catch (CustomException e)
             {
-                Assert.AreEqual(e.type, CustomException.ExceptionType.Incorrect_Delimiter);
+                Assert.AreEqual("Incorrect Delimiter", e.Message);
             }
         }
         /// <summary>
@@ -162,12 +157,11 @@ namespace CensusAnalyzer
         {
             try
             {
-                var incorrectHeader = statesCodeCSV(IndianCensusdata, ',', "SrN,State,TIN,StateCode");
-                Assert.AreEqual("Incorrect header", incorrectHeader);
+                var incorrectHeader = Assert.Throws<CustomException>(() => statesCodeCSV(IndianCensusdata, ',', "SrN,State,TIN,StateCode"));
             }
             catch (CustomException e)
             {
-                Assert.AreEqual(e.type, CustomException.ExceptionType.Incorrect_Header);
+                Assert.AreEqual("Incorrect header", e.Message);
             }
         }
         /// <summary>
